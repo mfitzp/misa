@@ -32,13 +32,13 @@ of the second issue above, but cannot eliminate it entirely.
 To use call `misa` with a spectra, a number of segments and optionally an axis scale. If an axis
 scale is provided plots will be generated showing the default and optimised segmental shift.
 
-    misa(spectra, 50)
+    misa(spectra, 50);
 
-    misa(spectra, 50, ppm)
+    misa(spectra, 50, ppm);
 
 The searching algorithm is available independently as `misa_find_segments`
 
-    misa_find_segments(spectra, 50)
+    misa_find_segments(spectra, 50);
     
 ## Feedback
 
