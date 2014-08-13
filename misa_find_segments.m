@@ -51,7 +51,7 @@ function [segments]=misa_find_segments(spectra, n_of_segments)
         idx = find( sshifts==min(sshifts) );
         % Check shift back? Note the idx vs. actual shift is off by one because matlab
         e = s+min_size_per_segment+idx; % Shift this segment equal distance
-        if isempty(e) % Past the end
+        if isempty(e) || e>spec_size% Past the end
             e = spec_size;
         end
         segments = [segments, s e];
@@ -68,7 +68,7 @@ function [segments]=misa_find_segments(spectra, n_of_segments)
         hold on;
     
         plot(x_axis, aligned);   
-    
+        set(gca, 'XDir', 'reverse')
         overall_max = max( aligned(:) );
     
         % Draw regular segments (icoshift default)

@@ -1,4 +1,4 @@
-function [aligned, segments]=misa(spectra, n_of_segments, Scal)
+function [aligned, segments]=misa(spectra, n_of_segments, Scal, plot_diff)
 % [xCS,ints,ind,target] = icoshift(xT,xP,inter[,n[,options[,Scal]]])
 % MISA: Minimally Improved Segmental Alignment
 %
@@ -32,7 +32,7 @@ function [aligned, segments]=misa(spectra, n_of_segments, Scal)
         hold on;
     
         plot(Scal, aligned);   
-    
+        set(gca, 'XDir', 'reverse')
         overall_max = max( aligned(:) );
         % Define regular regions across the spectra to n segments
         spec_size = length(spectra);
@@ -50,5 +50,17 @@ function [aligned, segments]=misa(spectra, n_of_segments, Scal)
         end
     
         hold off;
+        
+        if exist('plot_diff')
+            figure;
+            hold on;
+            plot(Scal, median(aligned), 'b');   
+            [xCS,ints,ind,target] = icoshift('median', spectra, n_of_segments);
+            plot(Scal, median(xCS), 'r');   
+            set(gca, 'XDir', 'reverse')
+            hold off;
+        end
+        
+        
     end
 end
